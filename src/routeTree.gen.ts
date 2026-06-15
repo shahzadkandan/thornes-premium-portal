@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SurgicalExportsRouteImport } from './routes/surgical-exports'
 import { Route as MedicineExportsRouteImport } from './routes/medicine-exports'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SurgicalExportsRoute = SurgicalExportsRouteImport.update({
+  id: '/surgical-exports',
+  path: '/surgical-exports',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MedicineExportsRoute = MedicineExportsRouteImport.update({
   id: '/medicine-exports',
   path: '/medicine-exports',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/medicine-exports': typeof MedicineExportsRoute
+  '/surgical-exports': typeof SurgicalExportsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/medicine-exports': typeof MedicineExportsRoute
+  '/surgical-exports': typeof SurgicalExportsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/medicine-exports': typeof MedicineExportsRoute
+  '/surgical-exports': typeof SurgicalExportsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/medicine-exports'
+  fullPaths: '/' | '/medicine-exports' | '/surgical-exports'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/medicine-exports'
-  id: '__root__' | '/' | '/medicine-exports'
+  to: '/' | '/medicine-exports' | '/surgical-exports'
+  id: '__root__' | '/' | '/medicine-exports' | '/surgical-exports'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MedicineExportsRoute: typeof MedicineExportsRoute
+  SurgicalExportsRoute: typeof SurgicalExportsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/surgical-exports': {
+      id: '/surgical-exports'
+      path: '/surgical-exports'
+      fullPath: '/surgical-exports'
+      preLoaderRoute: typeof SurgicalExportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/medicine-exports': {
       id: '/medicine-exports'
       path: '/medicine-exports'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MedicineExportsRoute: MedicineExportsRoute,
+  SurgicalExportsRoute: SurgicalExportsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
