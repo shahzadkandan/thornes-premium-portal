@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Calendar, ChevronRight, Clock, Facebook, Linkedin, Link2, Mail, Tag, Twitter, User } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { getPost, getRelated } from "@/components/site/blog-data";
+import { getPost, getRelated, type BlogPost } from "@/components/site/blog-data";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -129,7 +129,7 @@ function ArticlePage() {
               <div className="glass rounded-2xl p-6">
                 <div className="text-xs uppercase tracking-[0.2em] text-[color:var(--teal)]">Tags</div>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {post.tags.map((t) => (
+                  {post.tags.map((t: string) => (
                     <span key={t} className="text-xs px-3 py-1 rounded-full border border-white/10 text-white/70 flex items-center gap-1"><Tag className="size-3" />{t}</span>
                   ))}
                 </div>
@@ -170,7 +170,7 @@ function ArticlePage() {
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="font-display text-3xl text-white mb-8">Related articles</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {related.map((p) => (
+              {related.map((p: BlogPost) => (
                 <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group glass rounded-3xl overflow-hidden hover:-translate-y-1 transition">
                   <div className="relative h-48 overflow-hidden">
                     <img src={p.cover} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
