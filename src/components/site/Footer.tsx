@@ -25,6 +25,7 @@ export function Footer() {
             <li><Link to="/" className="hover:text-[color:var(--teal)]">Home</Link></li>
             <li><Link to="/about" className="hover:text-[color:var(--teal)]">About</Link></li>
             <li><Link to="/services" className="hover:text-[color:var(--teal)]">Services</Link></li>
+            <li><Link to="/blog" className="hover:text-[color:var(--teal)]">Journal</Link></li>
             <li><Link to="/contact" className="hover:text-[color:var(--teal)]">Contact</Link></li>
           </ul>
         </div>

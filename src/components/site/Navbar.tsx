@@ -10,6 +10,7 @@ const nav = [
   { to: "/medicine-exports", label: "Medicine Exports" },
   { to: "/surgical-exports", label: "Surgical Exports" },
   { to: "/medical-exports", label: "Medical Exports" },
+  { to: "/blog", label: "Journal" },
   { to: "/contact", label: "Contact" },
 ];
 
