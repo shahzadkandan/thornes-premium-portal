@@ -80,11 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Thorneberry — Global Healthcare & Pharmaceutical Exports from Pakistan" },
       { name: "description", content: "Thorneberry is a trusted Pakistan-based exporter of pharmaceuticals, surgical instruments, medical wearables and premium food products to clients worldwide." },
       { name: "author", content: "Thorneberry" },
-      { property: "og:title", content: "Thorneberry — Global Healthcare & Pharmaceutical Exports" },
-      { property: "og:description", content: "Trusted worldwide for medicine exports, surgical instruments, medical wearables and healthcare products from Pakistan." },
+      { property: "og:title", content: "Thorneberry — Global Healthcare & Pharmaceutical Exports from Pakistan" },
+      { property: "og:description", content: "Thorneberry is a trusted Pakistan-based exporter of pharmaceuticals, surgical instruments, medical wearables and premium food products to clients worldwide." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Thorneberry" },
+      { name: "twitter:title", content: "Thorneberry — Global Healthcare & Pharmaceutical Exports from Pakistan" },
+      { name: "twitter:description", content: "Thorneberry is a trusted Pakistan-based exporter of pharmaceuticals, surgical instruments, medical wearables and premium food products to clients worldwide." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d9c6f25-b6a4-45a1-a103-3cf3baa27d9f/id-preview-47e15497--25febc0a-708c-41c2-9a8d-1dd0af38563a.lovable.app-1781640166008.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d9c6f25-b6a4-45a1-a103-3cf3baa27d9f/id-preview-47e15497--25febc0a-708c-41c2-9a8d-1dd0af38563a.lovable.app-1781640166008.png" },
     ],
     links: [
       {
