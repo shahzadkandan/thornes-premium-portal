@@ -45,6 +45,23 @@ Baseline screenshots already present in the repository and carried on this branc
 - Contact and RFQ forms validate input and expose server routes, but email delivery is intentionally disabled until an approved mail transport and recipient are configured.
 - `npm install` reports 2 moderate audit findings; these were not auto-fixed because `npm audit fix --force` may introduce breaking dependency changes.
 
+## Sprint 2 Staging Smoke Test
+
+Date: 2026-07-19
+
+The smoke test is blocked pending the approved staging WordPress origin and revalidation secret. No `.env.local` file is present in this checkout, and the production `thorneberry.com.pk` origin was intentionally not used.
+
+| Check | Result | Notes |
+| --- | --- | --- |
+| Configure `.env.local` | Blocked | Staging URL and secret were not available in the workspace. |
+| `GET /api/wordpress/health` | Not run | Running without environment configuration would correctly return `503` with `configured: false`. |
+| Live settings/pages/services/products/insights | Not run | Requires the approved staging origin. |
+| Fallback on API failure | Code-verified | Client falls back only when the API is absent, times out, returns a non-success response, or fails schema validation. |
+| Unknown live slugs | Code-verified | Detail queries now accept CMS slugs that are not in local fallback data. |
+| Tagged revalidation | Not run | Requires the staging secret; route accepts validated `wordpress:*` tags. |
+
+No production or `main` branch changes were made during this smoke-test attempt.
+
 ## Next Step
 
 Configure the approved staging WordPress environment, call `/api/wordpress/health`, then re-run the checks with:
