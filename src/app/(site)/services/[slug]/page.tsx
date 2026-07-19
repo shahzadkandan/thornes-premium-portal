@@ -1,28 +1,33 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getServices } from "../../../../lib/wordpress/queries";
+import { ServiceDetailView } from "../../../../components/next/service-detail-view";
+import { pageMetadata } from "../../../../lib/seo";
+import { getService, getServices, getSiteSettings } from "../../../../lib/wordpress/queries";
+
+export async function generateStaticParams() {
+  return (await getServices()).map((service) => ({ slug: service.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const [settings, service] = await Promise.all([getSiteSettings(), getService(slug)]);
+  if (!service) return {};
+  return pageMetadata(
+    settings,
+    service.seo.title,
+    service.seo.description,
+    service.image,
+    `/services/${slug}`,
+  );
+}
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const services = await getServices();
-  const service = services.find((item) => item.slug === slug);
-
-  if (!service) {
-    notFound();
-  }
-
-  const selectedService = service!;
-
-  return (
-    <section className="min-h-screen bg-white px-6 py-20 text-[color:var(--navy)]">
-      <div className="mx-auto max-w-4xl">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-[color:var(--teal-dark)]">
-          Service
-        </p>
-        <h1 className="mt-4 font-display text-5xl">{selectedService.title}</h1>
-        <p className="mt-6 text-xl leading-relaxed text-slate-600">
-          {selectedService.shortDescription}
-        </p>
-      </div>
-    </section>
-  );
+  const service = await getService(slug);
+  if (!service) notFound();
+  return <ServiceDetailView service={service} />;
 }

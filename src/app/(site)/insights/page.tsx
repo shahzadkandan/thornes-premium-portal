@@ -1,17 +1,35 @@
-export default function InsightsPage() {
+import type { Metadata } from "next";
+import { getInsights, getSiteSettings } from "../../../lib/wordpress/queries";
+import { pageMetadata } from "../../../lib/seo";
+import { InsightsBrowser } from "../../../components/next/insights-browser";
+import { Container, DarkPageHero } from "../../../components/next/site-primitives";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return pageMetadata(
+    settings,
+    "Knowledge Hub | Thorneberry",
+    "Buyer education, regulatory context and practical guidance on pharmaceutical exports, surgical sourcing and healthcare logistics.",
+    undefined,
+    "/insights",
+  );
+}
+
+export default async function InsightsPage() {
+  const insights = await getInsights();
   return (
-    <section className="min-h-screen bg-[color:var(--navy-deep)] px-6 py-20 text-white">
-      <div className="mx-auto max-w-5xl">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-[color:var(--teal)]">
-          Knowledge Hub
-        </p>
-        <h1 className="mt-4 font-display text-5xl">
-          Buyer education and healthcare sourcing insights.
-        </h1>
-        <p className="mt-6 text-xl text-white/65">
-          Insights will be sourced from WordPress posts and validated for claims before publication.
-        </p>
-      </div>
-    </section>
+    <div className="bg-[color:var(--navy-deep)]">
+      <DarkPageHero
+        eyebrow="Thorneberry Knowledge Hub"
+        title="Insights from the global healthcare supply chain."
+        description="Field notes, regulatory context and buyer education on pharmaceutical exports, surgical sourcing, medical supplies and shipment planning."
+        current="Knowledge Hub"
+      />
+      <section className="pb-28">
+        <Container>
+          <InsightsBrowser insights={insights} />
+        </Container>
+      </section>
+    </div>
   );
 }
