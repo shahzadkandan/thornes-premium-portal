@@ -4,5 +4,7 @@ export const wpEndpoints = {
   media: "/wp-json/wp/v2/media",
   services: "/wp-json/wp/v2/service",
   products: "/wp-json/wp/v2/product",
+  faqs: "/wp-json/wp/v2/faq",
   settings: "/wp-json/thorneberry/v1/settings",
+  page: (slug: string) => `/wp-json/thorneberry/v1/pages/${encodeURIComponent(slug)}`,
 } as const;

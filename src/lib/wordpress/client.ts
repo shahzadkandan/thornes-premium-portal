@@ -1,21 +1,23 @@
 import { z } from "zod";
 import { env } from "../env";
 
-type RequestOptions<TSchema extends z.ZodTypeAny> = {
+type RequestOptions<TSchema extends z.ZodTypeAny, TResult> = {
   path: string;
   schema: TSchema;
   revalidate?: number;
-  fallback: z.infer<TSchema>;
+  fallback: unknown;
+  transform?: (value: z.infer<TSchema>) => TResult;
 };
 
-export async function wordpressRequest<TSchema extends z.ZodTypeAny>({
+export async function wordpressRequest<TSchema extends z.ZodTypeAny, TResult>({
   path,
   schema,
   revalidate = 300,
   fallback,
-}: RequestOptions<TSchema>): Promise<z.infer<TSchema>> {
+  transform,
+}: RequestOptions<TSchema, TResult>): Promise<TResult> {
   if (!env.WORDPRESS_API_URL) {
-    return fallback;
+    return fallback as TResult;
   }
 
   const controller = new AbortController();
@@ -30,17 +32,18 @@ export async function wordpressRequest<TSchema extends z.ZodTypeAny>({
 
     if (!response.ok) {
       console.error(`WordPress request failed: ${path} ${response.status}`);
-      return fallback;
+      return fallback as TResult;
     }
 
     const json = await response.json();
-    return schema.parse(json);
+    const parsed = schema.parse(json);
+    return (transform ? transform(parsed) : parsed) as TResult;
   } catch (error) {
     console.error(
       `WordPress request error: ${path}`,
       error instanceof Error ? error.message : "Unknown error",
     );
-    return fallback;
+    return fallback as TResult;
   } finally {
     clearTimeout(timeout);
   }

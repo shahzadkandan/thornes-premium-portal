@@ -1,6 +1,6 @@
 # Headless WordPress CMS Mapping
 
-Date: 2026-07-18
+Date: 2026-07-19
 
 ## Goal
 
@@ -104,7 +104,14 @@ The Next.js route `app/api/revalidate/route.ts` accepts a secret and path. It sh
 
 ## Current Implementation Status
 
-- Initial TypeScript schemas are scaffolded in `src/lib/wordpress/schemas.ts`.
-- WordPress client wrapper is scaffolded in `src/lib/wordpress/client.ts`.
-- Fallback content is scaffolded in `src/content/fallback/site.ts`.
-- The current PR does not connect to a production WordPress instance.
+- Typed schemas cover site settings, homepage, about, contact, RFQ, services, products, insights and FAQs.
+- `src/lib/wordpress/mappers.ts` maps REST/ACF-style payloads into the normalized frontend model while preserving verified fallback content when fields are unavailable.
+- `src/lib/wordpress/queries.ts` exposes typed page, service, product, insight and FAQ queries with ISR revalidation and safe fallback behavior.
+- Next App Router routes consume the typed layer for all migrated pages and detail paths.
+- The frontend is intentionally not connected to production WordPress on this branch. Configure a staging `WORDPRESS_API_URL` only after the endpoint payloads are verified.
+
+## Claim Safety
+
+- Manufacturer ownership, certifications, cold-chain/GDP capability, supplier attribution and lead-time promises are not inferred from a product entry.
+- Empty or unverified certification/testimonial/team collections remain empty in the UI.
+- Fallback content uses buyer-facing coordination language and does not describe Thorneberry as a pharmaceutical manufacturer.
