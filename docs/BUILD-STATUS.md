@@ -10,6 +10,9 @@ npm install
 npm run typecheck
 npm run lint
 npm run build
+npm audit
+git status
+git diff --stat
 ```
 
 The incomplete dependency tree was quarantined and removed before reinstalling. The install completed successfully, and Next's PostCSS adapter was added so the existing Tailwind v4 stylesheet can compile under Next.js.
@@ -19,9 +22,10 @@ The incomplete dependency tree was quarantined and removed before reinstalling. 
 | Check              | Status               | Notes                                                                                                                                                 |
 | ------------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Dependency install | Passed               | Clean `npm install` completed. `@tailwindcss/postcss` was added for the Next.js build pipeline.                                                         |
-| Lint               | Passed with warnings | `eslint .` passes with 7 reviewed Fast Refresh warnings from shared UI exports and `src/app/layout.tsx`; generated output is ignored.                  |
-| Typecheck          | Passed              | `tsc --noEmit` completes successfully.                                                                                                                   |
-| Build              | Passed              | `next build` compiles, type-checks, prerenders 12 routes, and emits `sitemap.xml` and `robots.txt`.                                                      |
+| Lint               | Passed with warnings | `eslint .` passes with 6 reviewed Fast Refresh warnings from shared UI primitive exports; Next App Router files are excluded from this dev-only rule.     |
+| Typecheck          | Passed              | `tsc --noEmit` completes successfully.                                                                                                                     |
+| Build              | Passed              | `next build` compiles, type-checks and prerenders 38 routes, including service, product and insight detail paths.                                            |
+| Audit               | 2 moderate findings | PostCSS advisory is reported through Next's dependency tree; `npm audit fix --force` would introduce a breaking Next downgrade and was not applied.       |
 
 ## Screenshots
 
@@ -35,10 +39,10 @@ Baseline screenshots already present in the repository and carried on this branc
 
 ## Known Limitations
 
-- This PR initializes the Next.js App Router foundation but does not complete the visual section-by-section migration.
+- The App Router migration is feature-complete for the current approved content scope; further visual QA can continue against staging WordPress data.
 - Production is untouched.
 - WordPress REST integration is scaffolded but not connected to a live/staging API.
-- Contact and RFQ forms are placeholders pending approved mail transport and spam/rate-limit approach.
+- Contact and RFQ forms validate input and expose server routes, but email delivery is intentionally disabled until an approved mail transport and recipient are configured.
 - `npm install` reports 2 moderate audit findings; these were not auto-fixed because `npm audit fix --force` may introduce breaking dependency changes.
 
 ## Next Step
