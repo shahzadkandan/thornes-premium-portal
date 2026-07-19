@@ -34,7 +34,13 @@ function record(value: unknown): RecordValue {
 
 function sourceOf(value: unknown): RecordValue {
   const root = record(value);
-  return { ...root, ...record(root.acf), ...record(root.meta), ...record(root.fields) };
+  return {
+    ...root,
+    ...record(root.data),
+    ...record(root.acf),
+    ...record(root.meta),
+    ...record(root.fields),
+  };
 }
 
 function get(source: RecordValue, ...keys: string[]) {

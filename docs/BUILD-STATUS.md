@@ -41,13 +41,13 @@ Baseline screenshots already present in the repository and carried on this branc
 
 - The App Router migration is feature-complete for the current approved content scope; further visual QA can continue against staging WordPress data.
 - Production is untouched.
-- WordPress REST integration is scaffolded but not connected to a live/staging API.
+- WordPress REST integration is connected through the typed client and is environment-driven; this checkout has no staging URL configured, so builds use the verified local fallback data.
 - Contact and RFQ forms validate input and expose server routes, but email delivery is intentionally disabled until an approved mail transport and recipient are configured.
 - `npm install` reports 2 moderate audit findings; these were not auto-fixed because `npm audit fix --force` may introduce breaking dependency changes.
 
 ## Next Step
 
-Continue the visual section-by-section migration and connect the approved WordPress staging API. Re-run the checks with:
+Configure the approved staging WordPress environment, call `/api/wordpress/health`, then re-run the checks with:
 
 ```bash
 npm run format

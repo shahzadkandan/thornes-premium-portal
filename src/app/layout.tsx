@@ -3,6 +3,8 @@ import "./globals.css";
 import { getServices, getSiteSettings } from "../lib/wordpress/queries";
 import { SiteShell } from "../components/next/site-shell";
 
+export const revalidate = 300;
+
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
 

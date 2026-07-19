@@ -15,6 +15,7 @@ NEXT_PUBLIC_SITE_URL=
 ```
 
 `WORDPRESS_API_URL` is server-only. It must not be exposed in client components unless the endpoint is intentionally public.
+Use the staging WordPress origin only, for example `https://staging.example.com`; do not commit a real URL or secret to Git.
 
 ## WordPress Entities
 
@@ -88,19 +89,32 @@ cta
 contact_block
 ```
 
-## Fallback Strategy
+## Live Integration and Fallback Strategy
 
 The frontend should use typed local fallback data when:
 
-- WordPress is unavailable.
+- `WORDPRESS_API_URL` is not configured locally.
+- WordPress is unavailable or returns a non-success response.
 - ACF/custom fields are not exposed through REST.
 - A section is intentionally disabled pending verification.
 
 Fallback content must stay neutral and must not contain fake statistics, fake certifications, testimonials, or manufacturer claims.
 
+When `WORDPRESS_API_URL` is configured, the typed queries use the staging REST response first. Page requests also try the standard `wp/v2/pages?slug=` endpoint when the Thorneberry custom page endpoint returns `404`. Service, product, insight and FAQ collections remain mapped through their typed CPT responses.
+
 ## Revalidation
 
-The Next.js route `app/api/revalidate/route.ts` accepts a secret and path. It should be connected to WordPress webhooks only after staging is configured.
+The Next.js route `app/api/revalidate/route.ts` accepts the server-only secret and either one `path`, multiple `paths`, or approved `wordpress:*` cache `tags`:
+
+```json
+{
+  "secret": "<WORDPRESS_REVALIDATE_SECRET>",
+  "paths": ["/", "/services", "/services/pharmaceutical-sourcing"],
+  "tags": ["wordpress:services"]
+}
+```
+
+It revalidates only same-origin paths and the known WordPress tag namespace. `GET /api/wordpress/health` provides a no-store staging connectivity check without returning credentials or CMS payloads.
 
 ## Current Implementation Status
 
@@ -108,7 +122,8 @@ The Next.js route `app/api/revalidate/route.ts` accepts a secret and path. It sh
 - `src/lib/wordpress/mappers.ts` maps REST/ACF-style payloads into the normalized frontend model while preserving verified fallback content when fields are unavailable.
 - `src/lib/wordpress/queries.ts` exposes typed page, service, product, insight and FAQ queries with ISR revalidation and safe fallback behavior.
 - Next App Router routes consume the typed layer for all migrated pages and detail paths.
-- The frontend is intentionally not connected to production WordPress on this branch. Configure a staging `WORDPRESS_API_URL` only after the endpoint payloads are verified.
+- The frontend is intentionally not connected to production WordPress on this branch. Configure a staging `WORDPRESS_API_URL` through `.env.local` or the staging host environment after the endpoint payloads are verified.
+- ISR is configured at the root layout and data-fetch levels: settings revalidate after 10 minutes; page, collection and detail data revalidate after 5 minutes.
 
 ## Claim Safety
 

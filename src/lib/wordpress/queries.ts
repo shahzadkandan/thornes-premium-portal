@@ -9,6 +9,7 @@ import {
   fallbackSiteSettings,
   fallbackInsights,
 } from "../../content/fallback/site";
+import { z } from "zod";
 import { wordpressRequest } from "./client";
 import { wpEndpoints } from "./endpoints";
 import {
@@ -32,15 +33,20 @@ export async function getSiteSettings() {
     fallback: fallbackSiteSettings,
     transform: (value) => mapSiteSettings(value, fallbackSiteSettings),
     revalidate: 600,
+    tags: ["wordpress:settings"],
   });
 }
 
 async function getPagePayload(slug: string) {
+  const pageResponseSchema = z.union([wordpressObjectSchema, wordpressObjectListSchema]);
   return wordpressRequest({
     path: wpEndpoints.page(slug),
-    schema: wordpressObjectSchema,
+    fallbackPaths: [wpEndpoints.pageBySlug(slug)],
+    schema: pageResponseSchema,
     fallback: {},
+    transform: (value) => (Array.isArray(value) ? (value[0] ?? {}) : value),
     revalidate: 300,
+    tags: [`wordpress:page:${slug}`],
   });
 }
 
@@ -74,14 +80,13 @@ export async function getServices(): Promise<Service[]> {
         ),
       ),
     revalidate: 300,
+    tags: ["wordpress:services"],
   });
 }
 
 export async function getService(slug: string) {
-  const fallback = fallbackServices.find((service) => service.slug === slug);
-  if (!fallback) return undefined;
   const services = await getServices();
-  return services.find((service) => service.slug === slug) ?? fallback;
+  return services.find((service) => service.slug === slug);
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -98,14 +103,13 @@ export async function getProducts(): Promise<Product[]> {
         ),
       ),
     revalidate: 300,
+    tags: ["wordpress:products"],
   });
 }
 
 export async function getProduct(slug: string) {
-  const fallback = fallbackProducts.find((product) => product.slug === slug);
-  if (!fallback) return undefined;
   const products = await getProducts();
-  return products.find((product) => product.slug === slug) ?? fallback;
+  return products.find((product) => product.slug === slug);
 }
 
 export async function getInsights(): Promise<Insight[]> {
@@ -122,14 +126,13 @@ export async function getInsights(): Promise<Insight[]> {
         ),
       ),
     revalidate: 300,
+    tags: ["wordpress:insights"],
   });
 }
 
 export async function getInsight(slug: string) {
-  const fallback = fallbackInsights.find((insight) => insight.slug === slug);
-  if (!fallback) return undefined;
   const insights = await getInsights();
-  return insights.find((insight) => insight.slug === slug) ?? fallback;
+  return insights.find((insight) => insight.slug === slug);
 }
 
 export async function getFaqs() {
@@ -140,5 +143,6 @@ export async function getFaqs() {
     transform: (items) =>
       items.map((item, index) => mapFaq(item, fallbackFaqs[index] ?? fallbackFaqs[0])),
     revalidate: 300,
+    tags: ["wordpress:faqs"],
   });
 }

@@ -19,6 +19,8 @@ WORDPRESS_REVALIDATE_SECRET=
 NEXT_PUBLIC_SITE_URL=
 ```
 
+For Sprint 2 staging, copy `.env.example` to `.env.local` and replace only the example values with the approved staging origin and a random webhook secret. Never commit `.env.local`.
+
 ## Release Rules
 
 - Do not deploy from this branch directly.
@@ -29,7 +31,7 @@ NEXT_PUBLIC_SITE_URL=
 
 ## Known Gaps
 
-- Visual section migration from TanStack routes to App Router is not complete in this first scaffold.
-- Forms are placeholders and require approved email service configuration.
-- WordPress custom fields depend on ACF/custom REST configuration.
-- Production images require migration to `next/image` once final assets are approved.
+- The staging WordPress origin and endpoint payloads still need owner-provided verification; no production URL is used by this branch.
+- Forms validate input but still require approved email service configuration for delivery.
+- WordPress custom fields depend on ACF/custom REST configuration; standard page slug fallback is included.
+- Run `GET /api/wordpress/health` after staging environment variables are loaded to verify connectivity.
