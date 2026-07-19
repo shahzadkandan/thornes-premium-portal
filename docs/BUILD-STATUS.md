@@ -1,26 +1,27 @@
 # Build Status
 
-Date: 2026-07-18
+Date: 2026-07-19
 Branch: `headless-next-rebuild`
 
 ## Commands Run
 
 ```bash
 npm install
-npm install next@16.0.0 --save --prefer-offline --no-audit --fetch-retries=5 --fetch-retry-maxtimeout=120000
 npm run typecheck
 npm run lint
 npm run build
 ```
 
+The incomplete dependency tree was quarantined and removed before reinstalling. The install completed successfully, and Next's PostCSS adapter was added so the existing Tailwind v4 stylesheet can compile under Next.js.
+
 ## Result
 
 | Check              | Status               | Notes                                                                                                                                                 |
 | ------------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Dependency install | Failed               | `npm install` hit `ECONNRESET`; retry hit partial/corrupt `node_modules` extraction for `next`, `@next/env`, `@next/swc-win32-x64-msvc`, and `sharp`. |
-| Lint               | Passed with warnings | `eslint .` passes with 7 Fast Refresh warnings from existing shared UI exports and `src/app/layout.tsx`.                                              |
-| Typecheck          | Failed               | Next.js types are unavailable because `next` did not install.                                                                                         |
-| Build              | Failed               | `next` executable is unavailable: `'next' is not recognized as an internal or external command`.                                                      |
+| Dependency install | Passed               | Clean `npm install` completed. `@tailwindcss/postcss` was added for the Next.js build pipeline.                                                         |
+| Lint               | Passed with warnings | `eslint .` passes with 7 reviewed Fast Refresh warnings from shared UI exports and `src/app/layout.tsx`; generated output is ignored.                  |
+| Typecheck          | Passed              | `tsc --noEmit` completes successfully.                                                                                                                   |
+| Build              | Passed              | `next build` compiles, type-checks, prerenders 12 routes, and emits `sitemap.xml` and `robots.txt`.                                                      |
 
 ## Screenshots
 
@@ -38,11 +39,11 @@ Baseline screenshots already present in the repository and carried on this branc
 - Production is untouched.
 - WordPress REST integration is scaffolded but not connected to a live/staging API.
 - Contact and RFQ forms are placeholders pending approved mail transport and spam/rate-limit approach.
-- Build cannot pass until local dependency install is repaired.
+- `npm install` reports 2 moderate audit findings; these were not auto-fixed because `npm audit fix --force` may introduce breaking dependency changes.
 
-## Next Recovery Step
+## Next Step
 
-Clean the partial generated `node_modules` dependency install, rerun `npm install`, then run:
+Continue the visual section-by-section migration and connect the approved WordPress staging API. Re-run the checks with:
 
 ```bash
 npm run format
