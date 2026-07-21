@@ -1,5 +1,33 @@
 # Build Status
 
+## Sprint 4: Production CMS Migration Audit
+
+Date: 2026-07-21
+
+- Production REST connectivity verified at `https://thorneberry.com.pk`.
+- `thorneberry/v1/settings` returned HTTP 200, but settings values are currently empty.
+- Services, Products, Posts, Pages, FAQs, Testimonials, Certifications, Team Members and Product Categories returned HTTP 200 with zero records.
+- Old content audit completed from the captured WordPress exports, HTML captures, media export and product workbook.
+- Migration manifest, dry-run report, content mapping, media mapping and unresolved-items report created before any production write.
+- Production import is blocked by missing write credentials, unresolved claim review, empty live content, duplicate CPT registrations and pending product/logo approvals.
+- No production content was changed and no deployment was performed.
+
+### Sprint 4 Validation
+
+| Check | Result | Notes |
+| --- | --- | --- |
+| Migration script syntax | Passed | `node --check scripts/wordpress-migration.mjs` |
+| Migration mapping JSON | Passed | `CONTENT-MAPPING.json` and `MEDIA-MAPPING.json` parse successfully. |
+| Migration dry-run | Passed | `destructive_actions=0`; all held records were skipped. |
+| Live REST read smoke test | Passed | Settings and all required collection endpoints returned HTTP 200; live collections are empty. |
+| Frontend lint | Passed with warnings | 6 existing Fast Refresh warnings in shared UI primitives; no errors. |
+| Frontend typecheck | Passed | `tsc --noEmit` completed successfully. |
+| Frontend build | Passed | 19 current App Router routes generated successfully. |
+
+No post-import frontend smoke test was run because the production import gate is intentionally blocked and no live content was written.
+
+See the repository root migration reports for the complete gate and classification.
+
 Date: 2026-07-19
 Branch: `headless-next-rebuild`
 
