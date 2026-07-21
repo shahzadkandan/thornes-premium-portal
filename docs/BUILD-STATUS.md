@@ -26,6 +26,27 @@ Date: 2026-07-21
 
 No post-import frontend smoke test was run because the production import gate is intentionally blocked and no live content was written.
 
+## Sprint 4 Approved Pilot Attempt
+
+Date: 2026-07-21
+
+The approved pilot was prepared and dry-run, but no production write was attempted. The current environment contains only `NEXT_PUBLIC_SITE_URL` and `WORDPRESS_API_URL` in `.env.local`; it has no WordPress write credentials or apply confirmation variables.
+
+| Check | Result | Notes |
+| --- | --- | --- |
+| Approved dry-run | Passed | `destructive_actions=0`; no settings, page or media write request was sent. |
+| Site Settings write | Blocked | Public settings endpoint is read-only; authenticated ACF/admin or WP-CLI path is required. |
+| Contact draft write | Blocked | Write credentials missing; existing manifest remains audit-classified. |
+| Hero upload | Blocked | Write credentials missing; no attachment ID created. |
+| Production REST verification | Blocked | Repeated TLS `ECONNRESET` during this attempt; previous audit recorded HTTP 200 with empty collections. |
+| Local `/contact` | Passed | HTTP 200 using existing fallback content. |
+| Local `/` | Passed | HTTP 200 using existing fallback content; no live hero attachment available. |
+| Lint | Passed with warnings | 6 existing Fast Refresh warnings, no errors. |
+| Typecheck | Passed | `tsc --noEmit` completed successfully. |
+| Build | Passed | 19 routes generated; live API fetch errors fell back without failing the build. |
+
+No production content, media, settings, theme, frontend deployment or `main` branch was changed.
+
 See the repository root migration reports for the complete gate and classification.
 
 Date: 2026-07-19

@@ -1,7 +1,7 @@
 # Migration Results
 
 **Date:** 2026-07-21
-**Status:** Audit and dry-run preparation complete; production import not executed
+**Status:** Audit complete; approved pilot blocked before production write
 
 ## Counts
 
@@ -40,3 +40,26 @@ See `MIGRATION-MANIFEST.md`, `MIGRATION-DRY-RUN.md`, `CONTENT-MAPPING.json`, `ME
 ## Next Production Gate
 
 No import can proceed until unresolved items are explicitly approved, a fresh production backup is confirmed, an approved WordPress write method is available, and the product/logo/claim decisions are recorded. The current branch contains the audit and dry-run tooling only.
+
+## Approved Pilot Execution Attempt
+
+**Scope:** Six verified settings, sanitized Contact draft, hero candidate `medicine-export-scaled.jpg` source ID `5942`. Products, categories, Services, Team Members, Insights, FAQs, Testimonials and Certifications were excluded.
+
+- Settings fields written: **none**.
+- Contact page written: **none**.
+- Hero uploaded: **none**; attachment ID and URL were not created.
+- Dry-run: **passed** with `destructive_actions=0`; the existing script logged Site Settings as read-only, held Contact because the manifest remains audit-classified, and held media ID `5942` because it remains a candidate pending apply approval.
+- Production write result: **not attempted**. `WP_USERNAME` and `WP_APPLICATION_PASSWORD` are missing; apply safety confirmations are also absent. The public settings route is read-only and requires authenticated ACF/admin or WP-CLI handling.
+- Read-only REST verification: **blocked during this attempt** by repeated TLS `ECONNRESET` responses from `thorneberry.com.pk`. The previous audit recorded HTTP 200 for the settings and collection routes with empty public collections.
+- Local Contact page: **HTTP 200**.
+- Local homepage: **HTTP 200**. It used existing fallback content; no production hero attachment could be consumed because no upload or settings write occurred.
+- Lint: **passed with 6 existing Fast Refresh warnings**.
+- Typecheck: **passed**.
+- Build: **passed**, with 19 routes generated. The unavailable live API produced fallback fetch errors, but did not fail the build.
+
+### Remaining Pilot Blockers
+
+1. Supply `WP_USERNAME` and `WP_APPLICATION_PASSWORD` through a secure environment only.
+2. Confirm fresh-backup and apply safety variables at execution time.
+3. Use an authenticated ACF/admin or WP-CLI path for the six Site Settings values.
+4. Extend the approved pilot payload into the controlled migration input before applying; no migration script was modified in this attempt.
