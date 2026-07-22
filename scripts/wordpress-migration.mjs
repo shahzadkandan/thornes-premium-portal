@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
+import "dotenv/config";
+import dotenv from "dotenv";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
+dotenv.config({ path: path.join(root, ".env.local"), override: true });
 const mode = process.env.MIGRATION_MODE || "dry-run";
 const baseUrl = (process.env.WP_BASE_URL || process.env.WORDPRESS_API_URL || "").replace(/\/$/, "");
 const username = process.env.WP_USERNAME || "";

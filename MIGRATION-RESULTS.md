@@ -63,3 +63,19 @@ No import can proceed until unresolved items are explicitly approved, a fresh pr
 2. Confirm fresh-backup and apply safety variables at execution time.
 3. Use an authenticated ACF/admin or WP-CLI path for the six Site Settings values.
 4. Extend the approved pilot payload into the controlled migration input before applying; no migration script was modified in this attempt.
+
+## Approved Pilot Apply Preflight
+
+**Date:** 2026-07-22  
+**Result:** Production write not attempted; safe settings write path unavailable
+
+- Existing dry-run: **passed** with `destructive_actions=0`.
+- Authenticated settings read: **HTTP 200**.
+- Authenticated ACF options route: **HTTP 404** (`rest_no_route`).
+- Authenticated WordPress settings route: **HTTP 403** (`rest_forbidden`).
+- Authenticated Contact lookup by slug: **HTTP 200**, no existing `contact` record returned.
+- Authenticated hero media lookup by slug: **HTTP 200**, no existing `medicine-export-scaled` attachment returned.
+- Production create/update/upload requests: **none**.
+- No duplicate Contact page or hero attachment was created.
+
+The companion plugin exposes the custom settings endpoint as read-only and stores fallback settings in `tb_hcms_settings`; the supplied WordPress Application Password does not provide a supported REST write route for those custom fields. Contact and media writes were intentionally not started because applying them without the six approved settings would leave the pilot incomplete. No credentials or `.env.local` were written to the repository.
