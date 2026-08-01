@@ -95,13 +95,37 @@ export async function getProducts(): Promise<Product[]> {
     schema: wordpressObjectListSchema,
     fallback: fallbackProducts,
     transform: (items) =>
-      items.map((item) =>
-        mapProduct(
-          item,
+      items.map((item) => {
+        const embedded = (item as Record<string, unknown>)._embedded;
+        const terms =
+          embedded && typeof embedded === "object" && !Array.isArray(embedded)
+            ? (embedded as Record<string, unknown>)["wp:term"]
+            : undefined;
+        const category = Array.isArray(terms)
+          ? terms
+              .flatMap((group) => (Array.isArray(group) ? group : []))
+              .find((term) => {
+                return (
+                  typeof term === "object" &&
+                  term !== null &&
+                  (term as Record<string, unknown>).taxonomy === "product_category"
+                );
+              })
+          : undefined;
+        const source =
+          category && typeof category === "object"
+            ? {
+                ...item,
+                category: (category as Record<string, unknown>).name,
+                category_slug: (category as Record<string, unknown>).slug,
+              }
+            : item;
+        return mapProduct(
+          source,
           fallbackProducts.find((product) => product.slug === String(item.slug ?? "")) ??
             fallbackProducts[0],
-        ),
-      ),
+        );
+      }),
     revalidate: 300,
     tags: ["wordpress:products"],
   });

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import type { Service, SiteSettings } from "../../lib/wordpress/types";
 
 export function SiteFooter({
@@ -50,6 +50,16 @@ export function SiteFooter({
                 Sourcing Catalogue
               </Link>
             </li>
+            <li>
+              <Link href="/privacy" className="transition hover:text-[color:var(--teal)]">
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="transition hover:text-[color:var(--teal)]">
+                Terms
+              </Link>
+            </li>
           </ul>
         </div>
         <div>
@@ -97,6 +107,20 @@ export function SiteFooter({
               />
               <a href={`mailto:${settings.email}`} className="break-all hover:text-white">
                 {settings.email}
+              </a>
+            </li>
+            <li className="flex gap-3">
+              <MessageCircle
+                className="mt-0.5 size-4 shrink-0 text-[color:var(--teal)]"
+                aria-hidden="true"
+              />
+              <a
+                href={`https://wa.me/${settings.whatsapp.replace(/[^\d]/g, "")}`}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white"
+              >
+                WhatsApp {settings.whatsapp}
               </a>
             </li>
           </ul>

@@ -15,22 +15,26 @@ export const fallbackSiteSettings = {
   phone: "+92-334-0007744",
   whatsapp: "+92-334-0007744",
   address: "House no 1, Adyala Road, RWP Pakistan",
-  workingHours: "Monday - Saturday, 9:00 - 18:00 PKT",
+  workingHours: "",
   logo: image(logoImage, "Thorneberry logo"),
   defaultSeoTitle: "Thorneberry | Healthcare Sourcing & Export Coordination",
   defaultSeoDescription:
     "Thorneberry connects international healthcare buyers with Pakistan-based sourcing, pharmaceutical export coordination, documentation and logistics support.",
-  defaultOgImage: image(heroPhoto, "Healthcare sourcing and export coordination from Pakistan"),
+  defaultOgImage: image(logoImage, "Thorneberry logo"),
   socialLinks: [],
   headerCta: { label: "Request RFQ", href: "/request-a-quote" },
   footerText:
     "Pakistan-based healthcare sourcing, pharmaceutical export, procurement, documentation and logistics coordination partner for international buyers.",
   navLinks: [
     { label: "Home", href: "/" },
-    { label: "Healthcare Solutions", href: "/services" },
-    { label: "Knowledge Hub", href: "/insights" },
     { label: "About", href: "/about" },
+    { label: "Healthcare Solutions", href: "/services" },
+    { label: "Pharma Sourcing", href: "/services/pharmaceutical-sourcing" },
+    { label: "Surgical", href: "/services/surgical-instruments" },
+    { label: "Medical Supplies", href: "/services/medical-supplies" },
+    { label: "Products", href: "/products" },
     { label: "Contact", href: "/contact" },
+    { label: "Request RFQ", href: "/request-a-quote" },
   ],
 };
 
@@ -40,7 +44,10 @@ export const fallbackHomepage = {
     title: "Healthcare sourcing & pharma export coordination from Pakistan.",
     description:
       "Thorneberry supports international buyers with pharmaceutical sourcing, medicine export coordination, quality documentation, regulatory coordination and global shipment planning.",
-    image: image(heroPhoto, "Healthcare sourcing and pharmaceutical export coordination"),
+    image: image(
+      "https://thorneberry.com.pk/wp-content/uploads/2026/07/medicine-export-scaled-1.jpg",
+      "Medicine export coordination workspace",
+    ),
     primaryCta: { label: "Request Export Quote", href: "/request-a-quote" },
     secondaryCta: { label: "Explore Healthcare Solutions", href: "/services" },
     proofPoints: [
@@ -83,8 +90,7 @@ export const fallbackHomepage = {
     "medicine-export-coordination",
     "surgical-instruments",
     "medical-supplies",
-    "medical-devices-wearables",
-    "quality-documentation",
+    "medical-wearables",
   ],
   valuePropositions: [
     {
@@ -342,7 +348,7 @@ export const fallbackServices = [
     verified: true,
   },
   {
-    slug: "medical-devices-wearables",
+    slug: "medical-wearables",
     title: "Medical Wearables & Devices",
     shortDescription:
       "Medical device and wearable sourcing coordination subject to product, certification and destination review.",

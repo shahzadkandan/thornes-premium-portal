@@ -21,7 +21,19 @@ export async function generateMetadata(): Promise<Metadata> {
       url: settings.siteUrl,
       siteName: settings.companyName,
       type: "website",
+      images: settings.defaultOgImage
+        ? [
+            {
+              url:
+                typeof settings.defaultOgImage.src === "string"
+                  ? settings.defaultOgImage.src
+                  : settings.defaultOgImage.src.src,
+              alt: settings.defaultOgImage.alt,
+            },
+          ]
+        : undefined,
     },
+    icons: { icon: "/icon.jpg", apple: "/icon.jpg" },
   };
 }
 
@@ -31,6 +43,24 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: settings.companyName,
+              url: settings.siteUrl,
+              email: settings.email,
+              telephone: settings.phone,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: settings.address,
+                addressCountry: "PK",
+              },
+            }),
+          }}
+        />
         <SiteShell settings={settings} services={services}>
           {children}
         </SiteShell>

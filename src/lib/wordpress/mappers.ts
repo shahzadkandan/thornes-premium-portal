@@ -129,14 +129,18 @@ export function mapSiteSettings(value: unknown, fallback: SiteSettings): SiteSet
       get(source, "default_og_image", "defaultOgImage"),
       fallback.defaultOgImage ?? fallback.logo,
     ),
-    socialLinks: Array.isArray(get(source, "social_links", "socialLinks"))
-      ? get(source, "social_links", "socialLinks")
-      : fallback.socialLinks,
+    socialLinks:
+      Array.isArray(get(source, "social_links", "socialLinks")) &&
+      (get(source, "social_links", "socialLinks") as unknown[]).length > 0
+        ? get(source, "social_links", "socialLinks")
+        : fallback.socialLinks,
     headerCta: cta(get(source, "header_cta", "headerCta"), fallback.headerCta),
     footerText: text(get(source, "footer_text", "footerText"), fallback.footerText),
-    navLinks: Array.isArray(get(source, "nav_links", "navLinks"))
-      ? get(source, "nav_links", "navLinks")
-      : fallback.navLinks,
+    navLinks:
+      Array.isArray(get(source, "nav_links", "navLinks")) &&
+      (get(source, "nav_links", "navLinks") as unknown[]).length > 0
+        ? get(source, "nav_links", "navLinks")
+        : fallback.navLinks,
   });
 }
 

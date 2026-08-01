@@ -12,7 +12,8 @@ export async function POST(request: Request) {
     {
       ok: false,
       error:
-        "Online email delivery is not configured yet. Please email info@thorneberry.com.pk or use WhatsApp +92-334-0007744.",
+        "Online email delivery is not configured yet. Please use the email draft or WhatsApp +92-334-0007744.",
+      fallbackUrl: "mailto:info@thorneberry.com.pk?subject=Thorneberry%20RFQ%20request",
     },
     { status: 503 },
   );
