@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(site)/layout,_N_T_/(site)/products/layout,_N_T_/(site)/products/[slug]/layout,_N_T_/(site)/products/[slug]/page,_N_T_/products/dipof-6-25mg-capsule,wordpress:settings,wordpress:services,wordpress:products"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHNpdGUp/products/$d$slug/__PAGE__",
+    "/!KHNpdGUp/products/$d$slug",
+    "/!KHNpdGUp/products",
+    "/!KHNpdGUp",
+    "/_index",
+    "/_head"
+  ]
+}

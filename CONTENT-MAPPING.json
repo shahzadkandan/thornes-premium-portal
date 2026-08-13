@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-07-21",
+  "status": "audit-complete-production-write-blocked",
+  "source_inventory": {
+    "old_pages": { "path": "../old-pages.json", "count": 40 },
+    "old_posts": { "path": "../old-posts.json", "count": 3 },
+    "old_media": { "path": "../old-media.json", "count": 82 },
+    "old_home_capture": { "path": "../old-home-live.html", "count": 1 },
+    "old_service_captures": { "path": "../old-service-*.html", "count": 3 },
+    "product_workbook": { "path": "D:/Laptop_User_Data_2026-07-05/Downloads/Product List global UPDATED 25.01.2024.xlsx", "product_rows": 493 }
+  },
+  "site_settings": {
+    "classification": "verified-and-safe-to-migrate",
+    "target": "thorneberry/v1/settings",
+    "fields": {
+      "company_name": "Thorneberry",
+      "site_url": "https://thorneberry.com.pk/",
+      "email": "info@thorneberry.com.pk",
+      "phone": "+92-334-0007744",
+      "whatsapp": "+92-334-0007744",
+      "address": "House no 1, Adyala Road, RWP Pakistan"
+    },
+    "held_fields": ["working_hours", "logo", "favicon", "default_seo_title", "default_seo_description", "default_og_image", "social_links", "header_cta", "footer_text", "nav_links"]
+  },
+  "items": [
+    {
+      "entity": "page",
+      "source_ids": [2],
+      "source_slugs": ["home-page-01"],
+      "target_slug": "home",
+      "classification": "requires-user-confirmation",
+      "reason": "Homepage includes unrelated export categories and unsupported pharmaceutical/manufacturing/superlative claims."
+    },
+    {
+      "entity": "page",
+      "source_ids": [1155],
+      "source_slugs": ["about"],
+      "target_slug": "about",
+      "classification": "requires-user-confirmation",
+      "reason": "Contains pharmaceutical-industry, board-role, product and franchise claims not supported by a clean approved record."
+    },
+    {
+      "entity": "page",
+      "source_ids": [1159],
+      "source_slugs": ["contact"],
+      "target_slug": "contact",
+      "classification": "requires-user-confirmation",
+      "reason": "Contact page contains conflicting phone numbers and a stale opening-hours statement."
+    },
+    {
+      "entity": "page",
+      "source_ids": [2308],
+      "source_slugs": ["services"],
+      "target_slug": "services",
+      "classification": "requires-user-confirmation",
+      "reason": "Page mixes healthcare services with dry fruits, rice, meat, poultry and other unrelated exports."
+    },
+    {
+      "entity": "service",
+      "source_files": ["../old-service-medicine-exporter.html", "../old-service-surgical-instruments-export.html", "../old-service-medical-wearables-exports.html"],
+      "target_slugs": ["medicine-exports", "surgical-exports", "medical-wearables"],
+      "classification": "requires-user-confirmation",
+      "reason": "Healthcare topics are relevant, but source copy contains unsupported rankings, manufacturing, availability, R&D and global-use claims."
+    },
+    {
+      "entity": "product",
+      "source": "product_workbook",
+      "source_rows": 493,
+      "target": "product",
+      "classification": "requires-user-confirmation",
+      "reason": "Workbook is branded Global Pharmaceuticals and does not establish Thorneberry ownership, live availability, regulatory status, destination eligibility or export documentation for each row."
+    },
+    {
+      "entity": "post",
+      "source_ids": [916, 914, 1],
+      "target": "posts",
+      "classification": "outdated-or-demo",
+      "reason": "All three posts contain Lorem Ipsum/demo content."
+    },
+    {
+      "entity": "faq",
+      "source_ids": [4364],
+      "target": "faqs",
+      "classification": "outdated-or-demo",
+      "reason": "Old FAQ is a theme placeholder with generic demo copy."
+    },
+    {
+      "entity": "team_member",
+      "source_ids": [4232],
+      "target": "team-members",
+      "classification": "outdated-or-demo",
+      "reason": "Old Team page is a theme template; no verified member records or approved biographies found."
+    },
+    {
+      "entity": "testimonial",
+      "source_ids": [4382],
+      "target": "testimonials",
+      "classification": "outdated-or-demo",
+      "reason": "Old testimonial page is an Elementor/theme template with no verified testimonial evidence."
+    },
+    {
+      "entity": "certification",
+      "source": "old website and backup audit",
+      "target": "certifications",
+      "classification": "missing-evidence",
+      "reason": "No verified certificate record or document was found in the audited source set."
+    }
+  ],
+  "excluded_categories": ["Dry Fruits", "Rice/Food", "Meat/Poultry"],
+  "no_production_write_performed": true
+}

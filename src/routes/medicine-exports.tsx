@@ -6,26 +6,47 @@ import hero from "@/assets/service-medicine.jpg";
 export const Route = createFileRoute("/medicine-exports")({
   head: () => ({
     meta: [
-      { title: "Medicine Exports — Thorneberry" },
-      { name: "description", content: "Pharmaceutical formulations, generics and APIs exported worldwide under GMP and GDP compliance." },
-      { property: "og:title", content: "Medicine Exports — Thorneberry" },
-      { property: "og:description", content: "Pharmaceutical formulations, generics and APIs exported worldwide under GMP compliance." },
+      { title: "Medicine Export Coordination - Thorneberry" },
+      {
+        name: "description",
+        content:
+          "Pharmaceutical sourcing, medicine export coordination and healthcare documentation support for global buyers.",
+      },
+      { property: "og:title", content: "Medicine Export Coordination - Thorneberry" },
+      {
+        property: "og:description",
+        content: "Pharmaceutical sourcing and export coordination from Pakistan.",
+      },
       { property: "og:image", content: hero },
       { name: "twitter:image", content: hero },
     ],
   }),
   component: () => (
     <CategoryPage
-      eyebrow="Medicine Exports"
-      title="Pharmaceutical Exports for Global Healthcare"
-      intro="Thorneberry exports a wide portfolio of licensed pharmaceutical formulations, generics and active pharmaceutical ingredients (APIs) — manufactured in GMP-certified facilities across Pakistan and shipped under strict GDP cold-chain compliance."
+      eyebrow="Medicine Export Coordination"
+      title="Pharmaceutical Sourcing for Global Healthcare Buyers"
+      intro="Thorneberry coordinates sourcing and export support for licensed pharmaceutical formulations, generics and selected healthcare products from Pakistan, with documentation and logistics aligned to buyer and destination requirements."
       heroImage={hero}
-      items={services.filter(s => ["medicine-exports","medical-products","medical-wearables"].includes(s.slug))}
+      items={services.filter((s) =>
+        ["medicine-exports", "medical-products", "medical-wearables"].includes(s.slug),
+      )}
       faqs={[
-        { q: "Which therapeutic categories do you supply?", a: "Antibiotics, analgesics, cardiovascular, dermatology, oncology supportive care, vitamins and OTC ranges, among others." },
-        { q: "Do you handle registration documentation?", a: "Yes — we provide CoA, CoO, GMP certificates, free-sale certificates and registration dossiers as required by your regulatory authority." },
-        { q: "What is the typical lead time?", a: "Most stock SKUs ship within 2–4 weeks of confirmed order; custom orders depend on batch scheduling." },
-        { q: "Can you do private label?", a: "Yes — we work with brand owners and distributors on private-label and contract-manufacturing programs." },
+        {
+          q: "Which therapeutic categories do you support?",
+          a: "Requests may include antibiotics, analgesics, cardiovascular, dermatology, vitamins, OTC ranges and other categories depending on supplier availability and destination requirements.",
+        },
+        {
+          q: "Do you handle registration documentation?",
+          a: "We coordinate available supplier documents such as CoA, CoO, GMP certificates, free-sale certificates and registration support files where applicable.",
+        },
+        {
+          q: "What is the typical lead time?",
+          a: "Lead time depends on stock, supplier readiness, documentation and destination route. Indicative timing is shared after RFQ review.",
+        },
+        {
+          q: "Can you support private-label inquiries?",
+          a: "Private-label or branded supply requests can be reviewed case by case with suitable Pakistani suppliers and documentation requirements.",
+        },
       ]}
     />
   ),

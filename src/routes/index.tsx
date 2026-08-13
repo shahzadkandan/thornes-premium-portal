@@ -1,219 +1,355 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Globe2, ShieldCheck, Truck, Award, HeartHandshake, Sparkles, CheckCircle2, Star, Quote, Mail, Phone, MapPin, Clock, Send } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
-import about1 from "@/assets/about-1.jpg";
-import about2 from "@/assets/about-2.jpg";
+import {
+  ArrowRight,
+  Bot,
+  CheckCircle2,
+  ClipboardCheck,
+  FileCheck2,
+  Globe2,
+  HeartHandshake,
+  MapPin,
+  PackageCheck,
+  Phone,
+  Plane,
+  SearchCheck,
+  Send,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
+  Truck,
+} from "lucide-react";
+import heroPhoto from "@/assets/thorneberry-healthcare-export-hero.webp";
+import pharmaVisual from "@/assets/hero-pharma-export.png";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { Counter } from "@/components/site/Counter";
 import { services } from "@/components/site/services-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Thorneberry — Global Healthcare & Pharmaceutical Exports" },
-      { name: "description", content: "Trusted worldwide for medicine exports, surgical instruments, medical wearables and premium food products from Pakistan." },
-      { property: "og:title", content: "Thorneberry — Global Healthcare & Pharmaceutical Exports" },
-      { property: "og:description", content: "Trusted worldwide for medicine exports, surgical instruments, medical wearables and premium food products from Pakistan." },
+      { title: "Thorneberry - Healthcare Sourcing & Pharmaceutical Export Coordination" },
+      {
+        name: "description",
+        content:
+          "Pakistan-based healthcare sourcing, pharmaceutical export, procurement, documentation, regulatory coordination and logistics support for international buyers.",
+      },
+      {
+        property: "og:title",
+        content: "Thorneberry - Healthcare Sourcing & Pharmaceutical Export Coordination",
+      },
+      {
+        property: "og:description",
+        content:
+          "A premium healthcare sourcing and export coordination partner from Pakistan for importers, distributors, hospitals and NGOs.",
+      },
     ],
   }),
   component: Index,
 });
 
+const fadeUp = {
+  initial: { opacity: 0, y: 22 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.65 },
+};
+
 function Index() {
   return (
     <SiteLayout>
       <Hero />
-      <TrustStrip />
-      <About />
-      <Services />
-      <WhyChooseUs />
-      <Gallery />
-      <Testimonials />
-      <CTA />
-      <Contact />
+      <TrustIndicators />
+      <Solutions />
+      <Portfolio />
+      <SourcingNetwork />
+      <QualityDocs />
+      <ExportProcess />
+      <Logistics />
+      <WhyThorneberry />
+      <RFQ />
+      <AssistantPreview />
+      <KnowledgeHub />
     </SiteLayout>
   );
 }
 
 function Hero() {
   return (
-    <section className="relative min-h-[100svh] flex items-center overflow-hidden pt-32 pb-24">
+    <section className="relative min-h-[100svh] overflow-hidden pt-[136px] pb-24 flex items-center">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover opacity-70" width={1920} height={1080} />
-        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--navy-deep)]/80 via-[color:var(--navy-deep)]/60 to-[color:var(--navy-deep)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(800px_400px_at_20%_30%,color-mix(in_oklab,var(--teal)_25%,transparent),transparent_60%)]" />
+        <img
+          src={heroPhoto}
+          alt=""
+          className="h-full w-full object-cover opacity-35"
+          width={1600}
+          height={1000}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--navy-deep)_0%,rgba(7,26,46,.9)_43%,rgba(7,26,46,.66)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(880px_460px_at_76%_36%,color-mix(in_oklab,var(--teal)_16%,transparent),transparent_68%)]" />
       </div>
-
-      {/* Floating glass cards */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}
-        className="hidden lg:flex absolute right-10 top-40 glass rounded-2xl p-4 w-64 animate-float">
-        <div className="flex items-center gap-3">
-          <div className="size-10 rounded-xl brand-gradient grid place-items-center text-[color:var(--navy-deep)]"><Globe2 className="size-5" /></div>
-          <div><div className="text-white text-sm font-medium">40+ Countries</div><div className="text-white/60 text-xs">Active export routes</div></div>
-        </div>
-      </motion.div>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.8 }}
-        style={{ animationDelay: "1.5s" }}
-        className="hidden lg:flex absolute right-32 bottom-32 glass rounded-2xl p-4 w-64 animate-float">
-        <div className="flex items-center gap-3">
-          <div className="size-10 rounded-xl brand-gradient grid place-items-center text-[color:var(--navy-deep)]"><ShieldCheck className="size-5" /></div>
-          <div><div className="text-white text-sm font-medium">ISO 13485 · GMP</div><div className="text-white/60 text-xs">Quality systems</div></div>
-        </div>
-      </motion.div>
-
-      <div className="relative mx-auto max-w-7xl px-6 w-full">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
-          className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs text-white/80 mb-6">
-          <span className="size-2 rounded-full brand-gradient animate-pulse-glow" /> Pakistan-based · Exporting to 40+ countries
-        </motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }}
-          className="font-display text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] max-w-4xl">
-          Global Healthcare & <br />
-          <span className="brand-gradient-text">Pharmaceutical</span> Export Solutions
-        </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}
-          className="mt-6 text-lg text-white/70 max-w-2xl leading-relaxed">
-          Trusted worldwide for medicine exports, surgical instruments, medical wearables and healthcare products from Pakistan — backed by quality systems, reliable logistics and decades of trade expertise.
-        </motion.p>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-10 flex flex-wrap gap-4">
-          <Link to="/services" className="inline-flex items-center gap-2 brand-gradient text-[color:var(--navy-deep)] font-semibold px-6 py-3.5 rounded-full glow hover:opacity-90 transition">
-            Explore Services <ArrowRight className="size-4" />
-          </Link>
-          <Link to="/contact" className="inline-flex items-center gap-2 glass-strong text-white font-medium px-6 py-3.5 rounded-full hover:bg-white/10 transition">
-            Contact Us
-          </Link>
-        </motion.div>
-
-        {/* Counters */}
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl">
-          {[
-            { v: 40, s: "+", l: "Countries Served" },
-            { v: 500, s: "+", l: "Product SKUs" },
-            { v: 15, s: "+", l: "Years of Trade" },
-            { v: 99, s: "%", l: "On-Time Delivery" },
-          ].map((c) => (
-            <div key={c.l} className="glass rounded-2xl p-5">
-              <div className="text-3xl sm:text-4xl font-display brand-gradient-text"><Counter to={c.v} suffix={c.s} /></div>
-              <div className="text-xs sm:text-sm text-white/60 mt-1">{c.l}</div>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-function TrustStrip() {
-  const items = [
-    { Icon: Globe2, t: "Global Export Network" },
-    { Icon: ShieldCheck, t: "Quality Assurance" },
-    { Icon: Truck, t: "Reliable Supply Chain" },
-    { Icon: Award, t: "International Standards" },
-    { Icon: HeartHandshake, t: "Customer Satisfaction" },
-  ];
-  return (
-    <section className="relative -mt-12 z-10">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="glass-strong rounded-3xl p-3 grid grid-cols-2 md:grid-cols-5 gap-2">
-          {items.map(({ Icon, t }) => (
-            <div key={t} className="flex items-center gap-3 p-4 rounded-2xl hover:bg-white/5 transition">
-              <div className="size-11 rounded-xl brand-gradient grid place-items-center text-[color:var(--navy-deep)] shrink-0"><Icon className="size-5" /></div>
-              <div className="text-white text-sm font-medium leading-tight">{t}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SectionHeader({ eyebrow, title, sub, center = true }: { eyebrow: string; title: React.ReactNode; sub?: string; center?: boolean }) {
-  return (
-    <div className={center ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}>
-      <div className={`inline-flex items-center gap-2 glass px-3 py-1 rounded-full text-xs text-[color:var(--teal)] uppercase tracking-[0.2em] ${center ? "" : ""}`}>
-        <Sparkles className="size-3" /> {eyebrow}
-      </div>
-      <h2 className="mt-4 font-display text-4xl md:text-5xl text-white leading-tight">{title}</h2>
-      {sub && <p className="mt-4 text-white/65 leading-relaxed">{sub}</p>}
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <section id="about" className="relative py-32">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <SectionHeader center={false} eyebrow="About Thorneberry"
-            title={<>A Pakistan-based exporter built for <span className="brand-gradient-text">global healthcare</span></>}
-            sub="Thorneberry is a trusted name in international trade — supplying pharmaceuticals, surgical instruments, medical wearables and premium agro-food products from Pakistan to partners across the world. We combine rigorous quality systems with a flexible, partner-first approach to logistics." />
-          <div className="mt-10 grid sm:grid-cols-3 gap-3">
+      <RouteNetwork />
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 px-6 lg:grid-cols-[1.14fr_.86fr]">
+        <div className="max-w-[740px]">
+          <motion.div
+            {...fadeUp}
+            className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.045] px-3.5 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-white/68 backdrop-blur"
+          >
+            <span className="size-1.5 rounded-full bg-[color:var(--teal)] shadow-[0_0_14px_color-mix(in_oklab,var(--teal)_65%,transparent)]" />
+            Pakistan-based healthcare sourcing desk
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12, duration: 0.78 }}
+            className="mt-7 max-w-[740px] text-balance font-display text-[42px] font-semibold leading-[1.06] text-white sm:text-[52px] lg:text-[56px]"
+          >
+            Healthcare sourcing & <span className="block">pharma export coordination</span>{" "}
+            <span className="block text-white/86">from Pakistan.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.28, duration: 0.72 }}
+            className="mt-7 max-w-[620px] text-[17px] leading-8 text-white/66"
+          >
+            Thorneberry supports international buyers with pharmaceutical sourcing, medicine export
+            coordination, quality documentation, regulatory coordination and global shipment
+            planning.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.42, duration: 0.72 }}
+            className="mt-10 flex flex-wrap gap-3.5"
+          >
+            <Link
+              to="/contact"
+              className="premium-button inline-flex items-center gap-2 rounded-full brand-gradient px-6 py-3.5 text-sm font-semibold text-[color:var(--navy-deep)]"
+            >
+              Request Export Quote <ArrowRight className="size-4" />
+            </Link>
+            <a
+              href="#solutions"
+              className="premium-button-secondary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium text-white"
+            >
+              Explore Healthcare Solutions
+            </a>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.58, duration: 0.72 }}
+            className="mt-14 grid max-w-2xl grid-cols-2 gap-3 md:grid-cols-4"
+          >
             {[
-              { t: "Mission", d: "Deliver reliable healthcare and food exports that improve lives globally." },
-              { t: "Vision", d: "To be Pakistan's most trusted bridge between local manufacturers and the world." },
-              { t: "Values", d: "Integrity, quality, transparency and long-term partnership." },
-            ].map((v) => (
-              <div key={v.t} className="glass rounded-2xl p-5">
-                <div className="text-[color:var(--teal)] text-xs uppercase tracking-widest">{v.t}</div>
-                <div className="text-white mt-2 text-sm leading-relaxed">{v.d}</div>
+              ["RFQ", "structured intake"],
+              ["Docs", "destination-aware"],
+              ["Incoterms", "quote clarity"],
+              ["Logistics", "shipment planning"],
+            ].map(([k, v]) => (
+              <div
+                key={k}
+                className="glass rounded-2xl p-4 transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.065]"
+              >
+                <div className="text-xl font-semibold text-white">{k}</div>
+                <div className="mt-1.5 text-xs text-white/52">{v}</div>
               </div>
             ))}
-          </div>
-          <Link to="/about" className="mt-10 inline-flex items-center gap-2 text-white hover:text-[color:var(--teal)] transition group">
-            Read our full story <ArrowRight className="size-4 group-hover:translate-x-1 transition" />
-          </Link>
+          </motion.div>
         </div>
-        <div className="relative">
-          <div className="grid grid-cols-2 gap-4">
-            <motion.img initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
-              src={about1} alt="Pharmaceutical specialist" loading="lazy" width={1024} height={1280}
-              className="rounded-3xl object-cover h-[420px] w-full glow" />
-            <motion.img initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15, duration: 0.7 }}
-              src={about2} alt="Global export logistics" loading="lazy" width={1024} height={800}
-              className="rounded-3xl object-cover h-[280px] w-full mt-12" />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: 0.28, duration: 0.9 }}
+          className="relative hidden lg:block"
+        >
+          <div className="absolute -inset-5 rounded-[32px] bg-[color:var(--teal)]/8 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[30px] border border-white/[0.10] bg-white/[0.035] p-2.5 shadow-[0_30px_90px_-48px_rgba(0,0,0,.95)] backdrop-blur-xl">
+            <img
+              src={pharmaVisual}
+              alt="Premium pharmaceutical sourcing and export coordination visual"
+              className="h-[520px] w-full rounded-[22px] object-cover object-[52%_50%] transition duration-700 hover:scale-[1.015]"
+              width={1200}
+              height={900}
+            />
+            <div className="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-2.5">
+              {[
+                ["Product", "review"],
+                ["Document", "check"],
+                ["Shipment", "plan"],
+              ].map(([a, b]) => (
+                <div
+                  key={a}
+                  className="rounded-2xl border border-white/[0.10] bg-[color:var(--navy-deep)]/64 p-3.5 backdrop-blur-xl"
+                >
+                  <div className="text-[13px] font-semibold text-white">{a}</div>
+                  <div className="mt-0.5 text-xs text-white/50">{b}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="absolute -bottom-6 -left-6 glass-strong rounded-2xl p-5 max-w-[220px]">
-            <div className="text-3xl font-display brand-gradient-text">15+</div>
-            <div className="text-xs text-white/65 mt-1">Years building trusted trade routes across Asia, Europe, MENA and Africa.</div>
-          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function RouteNetwork() {
+  return (
+    <svg
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-42"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="routeGrad" x1="0" x2="1">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity=".03" />
+          <stop offset="48%" stopColor="#22D3EE" stopOpacity=".32" />
+          <stop offset="100%" stopColor="#C69A3D" stopOpacity=".07" />
+        </linearGradient>
+      </defs>
+      {[
+        "M650 430 C820 318 1010 276 1235 172",
+        "M650 430 C850 430 1048 508 1284 638",
+        "M650 430 C540 310 450 252 304 204",
+        "M650 430 C810 358 930 390 1100 360",
+      ].map((d, i) => (
+        <motion.path
+          key={d}
+          d={d}
+          fill="none"
+          stroke="url(#routeGrad)"
+          strokeWidth="1.2"
+          strokeDasharray="2 18"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{
+            delay: 0.9 + i * 0.18,
+            duration: 2.4,
+            repeat: Infinity,
+            repeatType: "reverse",
+            repeatDelay: 3,
+          }}
+        />
+      ))}
+      {[
+        [650, 430],
+        [1235, 172],
+        [1284, 638],
+        [304, 204],
+        [1100, 360],
+      ].map(([cx, cy], i) => (
+        <circle
+          key={`${cx}-${cy}`}
+          cx={cx}
+          cy={cy}
+          r={i === 0 ? 3.2 : 2.2}
+          fill={i === 0 ? "#D9FFFA" : "#FFFFFF"}
+          opacity={i === 0 ? 0.72 : 0.36}
+        />
+      ))}
+    </svg>
+  );
+}
+
+function SectionHeader({
+  eyebrow,
+  title,
+  sub,
+  center = true,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  sub?: string;
+  center?: boolean;
+}) {
+  return (
+    <motion.div {...fadeUp} className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs uppercase tracking-[0.18em] text-[color:var(--teal)]">
+        <Sparkles className="size-3" /> {eyebrow}
+      </div>
+      <h2 className="mt-4 text-balance font-display text-4xl font-semibold leading-tight text-white md:text-5xl">
+        {title}
+      </h2>
+      {sub && <p className="mt-4 leading-relaxed text-white/65">{sub}</p>}
+    </motion.div>
+  );
+}
+
+function TrustIndicators() {
+  const items = [
+    {
+      Icon: SearchCheck,
+      t: "Healthcare sourcing",
+      d: "Product requirements reviewed before quote.",
+    },
+    { Icon: FileCheck2, t: "Documentation support", d: "COA, COO, batch, expiry and export docs." },
+    { Icon: ShieldCheck, t: "Regulatory coordination", d: "Destination-aware document workflow." },
+    {
+      Icon: Plane,
+      t: "Global shipment planning",
+      d: "Incoterms, freight mode and timeline clarity.",
+    },
+  ];
+  return (
+    <section className="relative -mt-8 z-10">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="glass-strong grid gap-2 rounded-[26px] p-3 md:grid-cols-4">
+          {items.map(({ Icon, t, d }) => (
+            <div
+              key={t}
+              className="rounded-2xl p-5 transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.045]"
+            >
+              <Icon className="size-5 text-white/72" />
+              <div className="mt-3 font-semibold text-white">{t}</div>
+              <div className="mt-1 text-sm text-white/55">{d}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function Services() {
+function Solutions() {
   return (
-    <section id="services" className="relative py-28">
+    <section id="solutions" className="py-32">
       <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader eyebrow="What we export"
-          title={<>A full portfolio of <span className="brand-gradient-text">healthcare & food</span> exports</>}
-          sub="From pharmaceutical formulations to premium agro-food products — every category is sourced from vetted manufacturers and shipped with end-to-end care." />
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s, i) => (
-            <motion.div key={s.slug}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ delay: (i % 3) * 0.08, duration: 0.5 }}
-              className="group glass rounded-3xl overflow-hidden hover:-translate-y-1 transition-all duration-500 hover:bg-white/[0.07]">
-              <div className="relative h-52 overflow-hidden">
-                <img src={s.image} alt={s.title} loading="lazy" width={1024} height={768}
-                  className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)] via-[color:var(--navy-deep)]/30 to-transparent" />
-                <div className="absolute top-4 left-4 size-11 rounded-xl brand-gradient grid place-items-center text-[color:var(--navy-deep)] shadow-lg">
+        <SectionHeader
+          eyebrow="Healthcare solutions"
+          title={
+            <>
+              Built around the buyer's{" "}
+              <span className="brand-gradient-text">procurement journey</span>
+            </>
+          }
+          sub="The site is designed for importers who need product clarity, documentation confidence, shipment planning and a clean path to RFQ."
+        />
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.slice(0, 6).map((s, i) => (
+            <motion.article
+              key={s.slug}
+              {...fadeUp}
+              transition={{ duration: 0.55, delay: (i % 3) * 0.07 }}
+              className="group overflow-hidden rounded-[26px] glass transition duration-300 hover:-translate-y-1 hover:bg-white/[0.06]"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)] to-transparent" />
+                <div className="absolute left-5 top-5 grid size-11 place-items-center rounded-xl brand-gradient text-[color:var(--navy-deep)]">
                   <s.Icon className="size-5" />
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="font-display text-xl text-white">{s.title}</h3>
-                <p className="mt-2 text-sm text-white/65 leading-relaxed line-clamp-3">{s.desc}</p>
-                <Link to={s.to} className="mt-5 inline-flex items-center gap-1.5 text-sm text-[color:var(--teal)] hover:text-[color:var(--cyan-accent)] transition">
-                  Read More <ArrowRight className="size-4 group-hover:translate-x-1 transition" />
-                </Link>
+                <h3 className="font-display text-2xl text-white">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/62">{s.desc}</p>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
@@ -221,165 +357,361 @@ function Services() {
   );
 }
 
-function WhyChooseUs() {
-  const items = [
-    { Icon: Award, t: "International Standards", d: "GMP, ISO 13485 and HACCP-aligned partners across our supply network." },
-    { Icon: Truck, t: "Reliable Delivery", d: "Multi-modal logistics with verified freight forwarders and real-time tracking." },
-    { Icon: ShieldCheck, t: "Quality Control", d: "Pre-shipment inspections, third-party labs and full traceability." },
-    { Icon: Sparkles, t: "Competitive Pricing", d: "Direct-from-manufacturer sourcing and scaled procurement advantage." },
-    { Icon: Globe2, t: "Global Reach", d: "Active distribution in Asia, MENA, Africa, Europe and the Americas." },
-    { Icon: HeartHandshake, t: "Customer Satisfaction", d: "Dedicated account managers and long-term partnership programs." },
-  ];
+function Portfolio() {
   return (
-    <section className="relative py-28">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader eyebrow="Why choose us"
-          title={<>Built to be the <span className="brand-gradient-text">partner you trust</span></>} />
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {items.map((it, i) => (
-            <motion.div key={it.t}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: (i % 3) * 0.08, duration: 0.5 }}
-              className="relative glass rounded-3xl p-7 hover:bg-white/[0.06] transition group overflow-hidden">
-              <div className="absolute -right-12 -top-12 size-40 rounded-full bg-[color:var(--teal)]/10 blur-3xl opacity-0 group-hover:opacity-100 transition" />
-              <div className="size-12 rounded-xl brand-gradient grid place-items-center text-[color:var(--navy-deep)]"><it.Icon className="size-6" /></div>
-              <h3 className="mt-5 font-display text-xl text-white">{it.t}</h3>
-              <p className="mt-2 text-sm text-white/65 leading-relaxed">{it.d}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Gallery() {
-  const imgs = [services[0].image, services[1].image, services[3].image, services[4].image, services[6].image, services[10].image];
-  const spans = ["row-span-2", "", "", "row-span-2", "", ""];
-  return (
-    <section className="relative py-28">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader eyebrow="Our world" title={<>Glimpses from across <span className="brand-gradient-text">our network</span></>} />
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] gap-4">
-          {imgs.map((src, i) => (
-            <motion.div key={i} initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
-              className={`relative overflow-hidden rounded-2xl glass group ${spans[i]}`}>
-              <img src={src} alt="" loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)]/70 to-transparent opacity-60 group-hover:opacity-30 transition" />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Testimonials() {
-  const items = [
-    { n: "Dr. Amelia Reyes", r: "Procurement Director, MedSource Europe", q: "Thorneberry has been a reliable partner for our pharmaceutical sourcing. Consistent quality and zero compromise on documentation." },
-    { n: "Karim Al-Sayed", r: "CEO, Gulf Surgical Trading", q: "Their Sialkot-made surgical instruments meet every spec we send. Lead times and packaging are best-in-class." },
-    { n: "Linh Nguyen", r: "Imports Manager, Saigon Wellness", q: "Wearables and consumables arrive exactly as quoted. The team is responsive across time zones." },
-  ];
-  return (
-    <section className="relative py-28">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader eyebrow="Client voices" title={<>Trusted by <span className="brand-gradient-text">global partners</span></>} />
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
-          {items.map((t, i) => (
-            <motion.div key={t.n} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              className="glass rounded-3xl p-7 relative">
-              <Quote className="absolute right-6 top-6 size-8 text-[color:var(--teal)]/30" />
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: 5 }).map((_, j) => <Star key={j} className="size-4 fill-[color:var(--teal)] text-[color:var(--teal)]" />)}
-              </div>
-              <p className="text-white/80 leading-relaxed">{t.q}</p>
-              <div className="mt-6 pt-5 border-t border-white/10">
-                <div className="text-white font-medium">{t.n}</div>
-                <div className="text-xs text-white/55 mt-0.5">{t.r}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CTA() {
-  return (
-    <section className="relative py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="relative overflow-hidden rounded-[2rem] p-12 md:p-20 text-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--navy)] via-[color:var(--navy-deep)] to-[color:var(--charcoal)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(600px_300px_at_50%_0%,color-mix(in_oklab,var(--teal)_40%,transparent),transparent_60%)] animate-pulse-glow" />
-          <div className="absolute -inset-px rounded-[2rem] [background:linear-gradient(120deg,transparent,color-mix(in_oklab,var(--teal)_60%,transparent),transparent)_border-box] [mask:linear-gradient(#000,#000)_padding-box,linear-gradient(#000,#000)] [mask-composite:exclude] border border-transparent" />
-          <div className="relative">
-            <h2 className="font-display text-4xl md:text-6xl text-white leading-tight max-w-3xl mx-auto">
-              Ready to partner with a <span className="brand-gradient-text">trusted global export company?</span>
-            </h2>
-            <p className="mt-5 text-white/70 max-w-xl mx-auto">Tell us what you need — our trade desk responds within one business day with samples, certificates and indicative pricing.</p>
-            <div className="mt-10 flex flex-wrap gap-4 justify-center">
-              <Link to="/contact" className="inline-flex items-center gap-2 brand-gradient text-[color:var(--navy-deep)] font-semibold px-7 py-4 rounded-full glow">Request Quote <ArrowRight className="size-4" /></Link>
-              <Link to="/contact" className="inline-flex items-center gap-2 glass-strong text-white font-medium px-7 py-4 rounded-full hover:bg-white/10 transition">Contact Us</Link>
+    <section className="py-28">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+        <SectionHeader
+          center={false}
+          eyebrow="Pharmaceutical portfolio"
+          title={
+            <>
+              A controlled sourcing layer,{" "}
+              <span className="brand-gradient-text">not a messy catalogue</span>
+            </>
+          }
+          sub="Product availability, documentation, MOQ and export feasibility are reviewed per inquiry, product and destination country."
+        />
+        <motion.div {...fadeUp} className="grid gap-3 sm:grid-cols-2">
+          {[
+            "Tablets",
+            "Capsules",
+            "Injections",
+            "Infusions",
+            "Syrups & Suspensions",
+            "Creams & Topicals",
+            "Antibiotics",
+            "Pain Management",
+          ].map((x) => (
+            <div
+              key={x}
+              className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4"
+            >
+              <CheckCircle2 className="size-5 text-[color:var(--teal)]" />
+              <span className="text-white/80">{x}</span>
             </div>
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function Contact() {
+function SourcingNetwork() {
   return (
-    <section id="contact" className="relative py-28">
+    <section className="py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader eyebrow="Get in touch" title={<>Let's start an <span className="brand-gradient-text">export conversation</span></>} />
-        <div className="mt-16 grid lg:grid-cols-2 gap-10">
-          <div className="space-y-6">
+        <div className="grid gap-9 rounded-[30px] border border-white/[0.09] bg-white/[0.035] p-8 shadow-[inset_0_1px_0_rgba(255,255,255,.04)] md:p-12 lg:grid-cols-[1fr_1.1fr]">
+          <SectionHeader
+            center={false}
+            eyebrow="Strategic sourcing network"
+            title={
+              <>
+                Healthcare sourcing through{" "}
+                <span className="brand-gradient-text">vetted supply relationships</span>
+              </>
+            }
+            sub="Thorneberry is not positioned as a manufacturer. The brand role is sourcing, export coordination, procurement, documentation and logistics support for qualified international buyers."
+          />
+          <div className="grid gap-4 sm:grid-cols-2">
             {[
-              { Icon: MapPin, t: "Address", d: "Head Office, Karachi, Sindh, Pakistan" },
-              { Icon: Phone, t: "Phone", d: "+92 300 000 0000" },
-              { Icon: Mail, t: "Email", d: "info@thorneberry.com" },
-              { Icon: Clock, t: "Working Hours", d: "Monday – Saturday · 9:00 – 18:00 PKT" },
-            ].map((c) => (
-              <div key={c.t} className="glass rounded-2xl p-5 flex items-start gap-4">
-                <div className="size-11 rounded-xl brand-gradient grid place-items-center text-[color:var(--navy-deep)] shrink-0"><c.Icon className="size-5" /></div>
-                <div><div className="text-white font-medium">{c.t}</div><div className="text-white/65 text-sm mt-1">{c.d}</div></div>
+              ["Source", "Clarify product, dosage, strength, quantity and destination."],
+              ["Verify", "Review product fit, document availability and export feasibility."],
+              [
+                "Coordinate",
+                "Prepare quote logic around MOQ, Incoterms, lead time and payment terms.",
+              ],
+              ["Ship", "Plan documents, packing, freight mode and dispatch coordination."],
+            ].map(([t, d]) => (
+              <div
+                key={t}
+                className="rounded-2xl bg-[color:var(--navy-deep)]/48 p-5 transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.045]"
+              >
+                <div className="text-xl font-semibold text-white">{t}</div>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{d}</p>
               </div>
             ))}
-            <div className="glass rounded-2xl overflow-hidden h-72">
-              <iframe title="Map" className="w-full h-full grayscale-[40%] opacity-90"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=66.97%2C24.80%2C67.17%2C24.95&layer=mapnik" />
-            </div>
           </div>
-
-          <form className="glass-strong rounded-3xl p-7 space-y-4" onSubmit={(e) => { e.preventDefault(); }}>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <Field label="Name" name="name" />
-              <Field label="Company" name="company" />
-              <Field label="Country" name="country" />
-              <Field label="Email" name="email" type="email" />
-              <Field label="Phone" name="phone" />
-            </div>
-            <Field label="Requirements" name="requirements" textarea />
-            <button className="inline-flex items-center gap-2 brand-gradient text-[color:var(--navy-deep)] font-semibold px-6 py-3.5 rounded-full glow w-full justify-center">
-              Submit Inquiry <Send className="size-4" />
-            </button>
-            <p className="text-xs text-white/50 text-center">We respond within one business day. Your information stays confidential.</p>
-          </form>
         </div>
       </div>
     </section>
   );
 }
 
-function Field({ label, name, type = "text", textarea = false }: { label: string; name: string; type?: string; textarea?: boolean }) {
-  const cls = "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-[color:var(--teal)] focus:ring-2 focus:ring-[color:var(--teal)]/30 transition";
+function QualityDocs() {
+  const docs = [
+    "COA",
+    "COO",
+    "Batch & Expiry",
+    "Commercial Invoice",
+    "Packing List",
+    "GMP / FSC / CoPP where applicable",
+  ];
   return (
-    <label className="block">
-      <span className="block text-xs uppercase tracking-widest text-white/60 mb-1.5">{label}</span>
-      {textarea
-        ? <textarea name={name} rows={4} className={cls} placeholder={`Tell us about your ${label.toLowerCase()}...`} />
-        : <input name={name} type={type} className={cls} placeholder={label} />}
-    </label>
+    <section className="py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeader
+          eyebrow="Quality & documentation"
+          title={
+            <>
+              Documentation support for{" "}
+              <span className="brand-gradient-text">serious import decisions</span>
+            </>
+          }
+          sub="No fake guarantees. Document availability depends on product, destination country, order status and regulatory requirement."
+        />
+        <div className="mt-16 grid gap-4 md:grid-cols-3">
+          {docs.map((d) => (
+            <div
+              key={d}
+              className="rounded-2xl glass p-6 transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.055]"
+            >
+              <FileCheck2 className="size-6 text-white/72" />
+              <div className="mt-4 font-semibold text-white">{d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ExportProcess() {
+  const steps = [
+    ["Requirement", "Product, generic, dosage form, strength, quantity and destination."],
+    ["Review", "Availability, documentation needs and export feasibility."],
+    ["Quotation", "MOQ, Incoterms, lead time, payment terms and quote validity."],
+    ["Coordination", "Packing, documents, freight mode, dispatch and repeat order support."],
+  ];
+  return (
+    <section className="py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeader
+          eyebrow="Export process"
+          title={
+            <>
+              From product requirement to{" "}
+              <span className="brand-gradient-text">export shipment</span>
+            </>
+          }
+        />
+        <div className="relative mt-16 grid gap-5 md:grid-cols-4">
+          {steps.map(([t, d], i) => (
+            <motion.div
+              key={t}
+              {...fadeUp}
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+              className="relative rounded-[26px] glass p-7 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.055]"
+            >
+              <div className="text-sm text-white/52">0{i + 1}</div>
+              <h3 className="mt-4 text-xl font-semibold text-white">{t}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/60">{d}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Logistics() {
+  return (
+    <section className="py-28">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:items-center">
+        <SectionHeader
+          center={false}
+          eyebrow="Global logistics"
+          title={
+            <>
+              Shipment planning for{" "}
+              <span className="brand-gradient-text">healthcare procurement</span>
+            </>
+          }
+          sub="Air, sea, Incoterms, freight forwarder coordination, customs documents and temperature-sensitive shipment planning where required."
+        />
+        <div className="relative min-h-[360px] overflow-hidden rounded-[30px] glass-strong p-8">
+          <div className="absolute inset-0 bg-[radial-gradient(500px_220px_at_50%_50%,color-mix(in_oklab,var(--teal)_12%,transparent),transparent_72%)]" />
+          <Globe2 className="absolute right-8 top-8 size-28 text-white/10" />
+          <div className="relative grid gap-4">
+            {[
+              "FCA / CIF / CIP / DAP quotation context",
+              "Air and sea shipment coordination",
+              "Temperature-sensitive planning where required",
+              "Packing, batch, expiry and dispatch documents",
+            ].map((x) => (
+              <div
+                key={x}
+                className="flex items-center gap-3 rounded-2xl bg-[color:var(--navy-deep)]/55 p-4"
+              >
+                <Truck className="size-5 text-white/66" />
+                <span className="text-white/75">{x}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyThorneberry() {
+  return (
+    <section className="py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeader
+          eyebrow="Why Thorneberry"
+          title={
+            <>
+              A focused partner for <span className="brand-gradient-text">healthcare buyers</span>
+            </>
+          }
+        />
+        <div className="mt-14 grid gap-5 md:grid-cols-5">
+          {[
+            [Stethoscope, "Healthcare-only focus"],
+            [ClipboardCheck, "Structured RFQ workflow"],
+            [ShieldCheck, "Documentation-aware support"],
+            [MapPin, "Pakistan sourcing advantage"],
+            [HeartHandshake, "Importer and NGO support"],
+          ].map(([Icon, t]) => {
+            const I = Icon as typeof Stethoscope;
+            return (
+              <div
+                key={t as string}
+                className="rounded-[26px] glass p-6 text-center transition duration-300 hover:-translate-y-1 hover:bg-white/[0.055]"
+              >
+                <I className="mx-auto size-6 text-white/72" />
+                <div className="mt-4 text-sm font-semibold text-white">{t as string}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RFQ() {
+  const fields = [
+    "Destination country",
+    "Product / generic name",
+    "Dosage form",
+    "Required strength",
+    "Quantity",
+    "Packaging requirement",
+    "Target delivery date",
+    "Import licence status",
+  ];
+  return (
+    <section className="py-32">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[.9fr_1.1fr]">
+        <SectionHeader
+          center={false}
+          eyebrow="Product inquiry / RFQ"
+          title={
+            <>
+              Built to collect the details{" "}
+              <span className="brand-gradient-text">export teams actually need</span>
+            </>
+          }
+          sub="The prototype RFQ flow prepares buyers to submit a useful inquiry instead of a vague contact message."
+        />
+        <form
+          className="rounded-[30px] glass-strong p-6 md:p-7"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <div className="grid gap-4 sm:grid-cols-2">
+            {fields.map((f) => (
+              <label key={f} className="block">
+                <span className="mb-1.5 block text-xs uppercase tracking-[0.16em] text-white/55">
+                  {f}
+                </span>
+                <input
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-white outline-none transition focus:border-white/30 focus:bg-white/[0.07]"
+                  placeholder={f}
+                />
+              </label>
+            ))}
+          </div>
+          <button className="premium-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full brand-gradient px-6 py-4 text-sm font-semibold text-[color:var(--navy-deep)]">
+            Submit Export Requirement <Send className="size-4" />
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+function AssistantPreview() {
+  return (
+    <section className="py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-8 rounded-[30px] border border-white/[0.09] bg-[color:var(--navy-deep)] p-8 md:p-12 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <Bot className="size-9 text-white/74" />
+            <h2 className="mt-5 font-display text-4xl font-semibold text-white">
+              Thorneberry Export Assistant
+            </h2>
+            <p className="mt-4 text-white/65">
+              A structured B2B inquiry assistant for product, destination, dosage, quantity,
+              packaging, licence and contact handoff.
+            </p>
+          </div>
+          <div className="space-y-3">
+            {[
+              "What product or generic name do you need?",
+              "Which destination country will import the shipment?",
+              "Do you already have an import licence or registration path?",
+              "Would you prefer WhatsApp or email follow-up?",
+            ].map((q) => (
+              <div
+                key={q}
+                className="rounded-2xl bg-white/[0.055] p-4 text-white/72 transition duration-300 hover:bg-white/[0.075]"
+              >
+                {q}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function KnowledgeHub() {
+  const guides = [
+    "How to request a pharmaceutical export quote",
+    "COA, COO, GMP, FSC and CoPP explained",
+    "Incoterms for healthcare importers",
+    "Cold chain considerations for medical shipments",
+  ];
+  return (
+    <section className="py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeader
+          eyebrow="Knowledge Hub"
+          title={
+            <>
+              Buyer education that supports{" "}
+              <span className="brand-gradient-text">better procurement decisions</span>
+            </>
+          }
+        />
+        <div className="mt-16 grid gap-5 md:grid-cols-4">
+          {guides.map((g) => (
+            <article
+              key={g}
+              className="rounded-[26px] glass p-6 transition duration-300 hover:-translate-y-1 hover:bg-white/[0.055]"
+            >
+              <PackageCheck className="size-6 text-white/72" />
+              <h3 className="mt-5 text-xl font-semibold text-white">{g}</h3>
+              <p className="mt-3 text-sm text-white/55">
+                Preview article for the future SEO and buyer education platform.
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-07-21",
+  "status": "audit-complete-production-upload-blocked",
+  "source": "../old-media.json",
+  "target": "WordPress Media Library",
+  "verified_candidate_assets": [
+    { "source_media_id": 5942, "source_slug": "medicine-export", "target_role": "medicine_service_image", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/06/medicine-export-scaled.jpg", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5771, "source_slug": "medicine", "target_role": "medicine_service_image_secondary", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/Medicine.jpg", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5518, "source_slug": "medicine1", "target_role": "medicine_hero_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/medicine1.jpg", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5519, "source_slug": "medicine2", "target_role": "medicine_hero_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/medicine2.jpg", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5691, "source_slug": "surgical-1-2", "target_role": "surgical_service_image", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/surgical-1-1-scaled.jpg", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5603, "source_slug": "surgical-1", "target_role": "surgical_service_image_secondary", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/surgical-1-scaled.jpg", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5789, "source_slug": "main-image-for-about-2", "target_role": "about_image_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/Main-image-for-about-1.png", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5753, "source_slug": "main-image-for-about", "target_role": "about_image_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/Main-image-for-about.png", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 5728, "source_slug": "home1", "target_role": "homepage_image_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2024/05/home1.jpeg", "classification": "verified-candidate", "alt_text_status": "missing" },
+    { "source_media_id": 4651, "source_slug": "icon-medical-kit", "target_role": "service_icon_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2019/11/icon-medical-kit.svg", "classification": "verified-candidate", "alt_text_status": "decorative_or_missing" },
+    { "source_media_id": 3937, "source_slug": "icon-location", "target_role": "contact_icon_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2019/08/icon-location.svg", "classification": "verified-candidate", "alt_text_status": "decorative_or_missing" },
+    { "source_media_id": 3936, "source_slug": "icon-email", "target_role": "contact_icon_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2019/08/icon-email.svg", "classification": "verified-candidate", "alt_text_status": "decorative_or_missing" },
+    { "source_media_id": 3935, "source_slug": "icon-clock", "target_role": "contact_icon_candidate", "source_url": "https://old.thorneberry.com.pk/wp-content/uploads/2019/08/icon-clock.svg", "classification": "verified-candidate", "alt_text_status": "decorative_or_missing" }
+  ],
+  "held_assets": [
+    { "source_media_id": 5891, "source_slug": "cropped-logosam-png", "target_role": "logo", "classification": "requires-user-confirmation", "reason": "Old logo differs from the newer owner-supplied logo asset." },
+    { "source": "owner-supplied Thorneberry Logo.jpg", "target_role": "logo", "classification": "missing-from-repository-source-set", "reason": "Needs to be staged in the migration source directory before upload." },
+    { "source": "favicon and OG image", "target_role": "favicon/default_og_image", "classification": "missing-evidence", "reason": "No approved production asset selected." }
+  ],
+  "excluded_asset_summary": {
+    "old_media_total": 82,
+    "direct_unrelated_export_assets": 14,
+    "unrelated_slugs": ["ghee-oil", "sea-food-11", "frozen", "sea-food", "rice1", "rice", "poultry", "dryfurit2", "seeds", "seeds2-2", "seeds2", "meat", "meat1", "dry-furits"],
+    "generic_or_legacy_assets_held": 53,
+    "uploads_performed": 0
+  },
+  "no_production_write_performed": true
+}

@@ -77,18 +77,44 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Thorneberry — Global Healthcare & Pharmaceutical Exports from Pakistan" },
-      { name: "description", content: "Thorneberry is a trusted Pakistan-based exporter of pharmaceuticals, surgical instruments, medical wearables and premium food products to clients worldwide." },
+      { title: "Thorneberry - Healthcare Sourcing & Pharmaceutical Export Coordination" },
+      {
+        name: "description",
+        content:
+          "Thorneberry is a Pakistan-based healthcare sourcing, pharmaceutical export, procurement, documentation, and logistics coordination partner for international buyers.",
+      },
       { name: "author", content: "Thorneberry" },
-      { property: "og:title", content: "Thorneberry — Global Healthcare & Pharmaceutical Exports from Pakistan" },
-      { property: "og:description", content: "Thorneberry is a trusted Pakistan-based exporter of pharmaceuticals, surgical instruments, medical wearables and premium food products to clients worldwide." },
+      {
+        property: "og:title",
+        content: "Thorneberry - Healthcare Sourcing & Pharmaceutical Export Coordination",
+      },
+      {
+        property: "og:description",
+        content:
+          "Pakistan-based healthcare sourcing, documentation, regulatory coordination, and logistics support for international buyers.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Thorneberry" },
-      { name: "twitter:title", content: "Thorneberry — Global Healthcare & Pharmaceutical Exports from Pakistan" },
-      { name: "twitter:description", content: "Thorneberry is a trusted Pakistan-based exporter of pharmaceuticals, surgical instruments, medical wearables and premium food products to clients worldwide." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d9c6f25-b6a4-45a1-a103-3cf3baa27d9f/id-preview-47e15497--25febc0a-708c-41c2-9a8d-1dd0af38563a.lovable.app-1781640166008.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d9c6f25-b6a4-45a1-a103-3cf3baa27d9f/id-preview-47e15497--25febc0a-708c-41c2-9a8d-1dd0af38563a.lovable.app-1781640166008.png" },
+      {
+        name: "twitter:title",
+        content: "Thorneberry - Healthcare Sourcing & Pharmaceutical Export Coordination",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Pakistan-based healthcare sourcing, documentation, regulatory coordination, and logistics support for international buyers.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d9c6f25-b6a4-45a1-a103-3cf3baa27d9f/id-preview-47e15497--25febc0a-708c-41c2-9a8d-1dd0af38563a.lovable.app-1781640166008.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d9c6f25-b6a4-45a1-a103-3cf3baa27d9f/id-preview-47e15497--25febc0a-708c-41c2-9a8d-1dd0af38563a.lovable.app-1781640166008.png",
+      },
     ],
     links: [
       {
@@ -97,7 +123,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,

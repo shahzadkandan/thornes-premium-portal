@@ -6,25 +6,43 @@ import hero from "@/assets/service-surgical.jpg";
 export const Route = createFileRoute("/surgical-exports")({
   head: () => ({
     meta: [
-      { title: "Surgical Exports — Thorneberry" },
-      { name: "description", content: "Precision stainless-steel surgical instruments crafted in Sialkot, exported worldwide to ISO 13485 standards." },
-      { property: "og:title", content: "Surgical Exports — Thorneberry" },
-      { property: "og:description", content: "Precision surgical instruments from Sialkot, Pakistan." },
+      { title: "Surgical Instrument Sourcing - Thorneberry" },
+      {
+        name: "description",
+        content:
+          "Surgical instrument sourcing and export coordination from Pakistan for hospitals, distributors and import companies.",
+      },
+      { property: "og:title", content: "Surgical Instrument Sourcing - Thorneberry" },
+      {
+        property: "og:description",
+        content: "Surgical instrument sourcing and export support from Pakistan.",
+      },
       { property: "og:image", content: hero },
       { name: "twitter:image", content: hero },
     ],
   }),
   component: () => (
     <CategoryPage
-      eyebrow="Surgical Exports"
-      title="Precision Surgical Instruments from Sialkot"
-      intro="From general surgery to dental, orthopaedic and ENT specialisations — our surgical instruments are crafted by Sialkot's master manufacturers and verified to ISO 13485 standards, ready for hospitals and distributors worldwide."
+      eyebrow="Surgical Instruments"
+      title="Surgical Instrument Sourcing from Pakistan"
+      intro="From general surgery to dental, orthopaedic and ENT requirements, Thorneberry helps buyers source surgical instruments from Pakistan with supplier documentation, inspection options and export coordination support."
       heroImage={hero}
-      items={services.filter(s => ["surgical-exports","medical-products","medical-wearables"].includes(s.slug))}
+      items={services.filter((s) =>
+        ["surgical-exports", "medical-products", "medical-wearables"].includes(s.slug),
+      )}
       faqs={[
-        { q: "What instrument categories do you offer?", a: "General surgery, dental, orthopaedic, ENT, ophthalmic, gynaecology, plastic surgery and veterinary instruments — plus custom-spec items." },
-        { q: "Are your instruments CE-marked?", a: "Yes — applicable instruments ship with CE marking and full technical files; FDA-registered options are available on request." },
-        { q: "Do you offer OEM and branding?", a: "Yes — laser engraving, custom packaging and branded sets are available from low MOQs." },
+        {
+          q: "What instrument categories can be requested?",
+          a: "General surgery, dental, orthopaedic, ENT, ophthalmic, gynaecology, plastic surgery and veterinary instruments can be reviewed with suitable suppliers.",
+        },
+        {
+          q: "Can documentation be provided?",
+          a: "Available supplier documentation, quality certificates and technical files can be coordinated according to product and destination requirements.",
+        },
+        {
+          q: "Do you support OEM and branding?",
+          a: "Branding, laser engraving, packaging and custom sets can be discussed where suppliers support the requested specifications and MOQs.",
+        },
       ]}
     />
   ),
