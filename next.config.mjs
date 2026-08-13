@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   experimental: {},
   images: {
     remotePatterns: process.env.WORDPRESS_API_URL
