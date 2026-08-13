@@ -3,6 +3,7 @@ const nextConfig = {
   output: "standalone",
   experimental: {},
   images: {
+    unoptimized: true,
     remotePatterns: process.env.WORDPRESS_API_URL
       ? [
           {
