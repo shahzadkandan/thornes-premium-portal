@@ -23,13 +23,22 @@ export function LeadForm({
     setFallbackHref("");
     const form = new FormData(event.currentTarget);
     const payload = Object.fromEntries(form.entries());
+    const emailSubject =
+      endpoint === "/api/rfq"
+        ? "Thorneberry RFQ request"
+        : "Thorneberry healthcare inquiry";
+    const emailBody = Object.entries(payload)
+      .filter(([name]) => name !== "website")
+      .map(([name, value]) => `${name}: ${String(value)}`)
+      .join("%0D%0A");
+    const mailtoFallback = `mailto:info@thorneberry.com.pk?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as {
+      const result = (await response.json().catch(() => ({}))) as {
         ok?: boolean;
         message?: string;
         error?: string;
@@ -40,15 +49,11 @@ export function LeadForm({
           result.error ??
           (response.ok ? "Your requirement has been received." : "We could not submit this form."),
       );
-      setFallbackHref(result.fallbackUrl ?? "");
+      setFallbackHref(result.fallbackUrl ?? mailtoFallback);
       if (response.ok) event.currentTarget.reset();
     } catch {
       setStatus("The form could not connect. Use the email draft or WhatsApp +92-334-0007744.");
-      setFallbackHref(
-        endpoint === "/api/rfq"
-          ? "mailto:info@thorneberry.com.pk?subject=Thorneberry%20RFQ%20request"
-          : "mailto:info@thorneberry.com.pk?subject=Thorneberry%20healthcare%20inquiry",
-      );
+      setFallbackHref(mailtoFallback);
     } finally {
       setBusy(false);
     }
