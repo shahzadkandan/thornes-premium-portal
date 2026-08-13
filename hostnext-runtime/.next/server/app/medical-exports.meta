@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(site)/layout,_N_T_/(site)/medical-exports/layout,_N_T_/(site)/medical-exports/page,_N_T_/medical-exports,wordpress:settings,wordpress:services"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHNpdGUp/medical-exports/__PAGE__",
+    "/!KHNpdGUp/medical-exports",
+    "/!KHNpdGUp",
+    "/_index",
+    "/_head"
+  ]
+}

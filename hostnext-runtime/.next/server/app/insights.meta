@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(site)/layout,_N_T_/(site)/insights/layout,_N_T_/(site)/insights/page,_N_T_/insights,wordpress:settings,wordpress:services,wordpress:insights"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHNpdGUp/insights/__PAGE__",
+    "/!KHNpdGUp/insights",
+    "/!KHNpdGUp",
+    "/_index",
+    "/_head"
+  ]
+}
